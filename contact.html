@@ -3,32 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpg" href="logo.png">
+    <title>Contact - Votre Site</title>
 
-    <title> Contact </title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
-    
 
+    <style>
+        /* Style général de la section contact */
+        .section_contact_1 {
+            padding: 40px 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
 
-    <meta property="og:title" content="Enseignement">
-    <meta property="og:description" content="Ressources mathématiques destinées aux élèves - niveau collège">
-    <meta property="og:image" content=""> <!--image logo-->
-    <meta property="og:url" content=""> <!--url github du site-->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content=" Galerie - Anouchka Récard">
+        .section_contact_1 h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
 
+        .details_contact_1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
+        .info_contact_1, .reseaux_sociaux_1 {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .reseaux_sociaux_1 ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+.reseaux_sociaux_1 li {
+    margin: 0 10px;
+}
+
+.reseaux_sociaux_1 a {
+    font-size: 1.5em;
+    color: #e74c3c;
+    text-decoration: none;
+}
+
+.reseaux_sociaux_1 a:hover {
+    color: #4d0f08; }
+
+        
+
+        .info_contact_1 h3, .reseaux_sociaux_1 h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .reseaux_sociaux_1 ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reseaux_sociaux_1 li {
+            margin: 10px 0;
+        }
+
+        .reseaux_sociaux_1 a {
+            text-decoration: none;
+            color: #e74c3c;
+            font-size: 1.1em;
+        }
+
+        .reseaux_sociaux_1 a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section_contact_1 {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .info_contact_1, .reseaux_sociaux_1 {
+            animation: fadeInUp 1s ease-out 0.5s;
+            animation-fill-mode: both;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section_contact_1 h2 {
+                font-size: 2em;
+            }
+
+            .info_contact_1, .reseaux_sociaux_1 {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Barre de Menu -->
     <header>
         <nav>
             <div class="logo"> Anouchka Récard </div>
@@ -46,61 +142,53 @@
 
             
         </nav>
-    </header>
+</header>
 
+    <main>
+        <section id="contact" class="section_contact_1">
+            <h2>Contact</h2>
 
-
-
-        <main>
-            <section id="contact" class="section_contact_1">
-                <h2 data-aos="fade-up">Contact</h2>
-    
-                <div class="details_contact_1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="info_contact_1">
-                        <h3>Informations de Contact</h3>
-                        <p><strong>Adresse :</strong> 123 Rue de l'Art, 75000 Paris</p>
-                        <p><strong>Téléphone :</strong> +33 1 23 45 67 89</p>
-                        <p><strong>Email :</strong> contact@votresite.com</p>
-                    </div>
-    
-                    <div class="reseaux_sociaux_1">
-                        <h3>Suivez-moi</h3>
-                        <ul>
-                            <li><a href="https://www.facebook.com/votrepage" target="_blank">Facebook</a></li>
-                            <li><a href="https://www.instagram.com/votrepage" target="_blank">Instagram</a></li>
-                            <li><a href="https://twitter.com/votrepage" target="_blank">Twitter</a></li>
-                        </ul>
-                    </div>
+            <div class="details_contact_1">
+                <div class="info_contact_1">
+                    <h3>Contacts</h3>
+                    <h4> Je reste disponible par mail et via les réseaux </h4>
+                    <p><strong>Email:</strong> anouchka.recard@gmail.com</p>
+                    <p> Saint-Etienne - 42000, France</p>
                 </div>
-            </section>
-        </main>
-    
-       
 
+                <div class="reseaux_sociaux_1">
+                    <h3>Suivez-moi</h3>
 
-
-        <footer>
-            <p>&copy; 2024 Anouchka Récard. Tous droits réservés.</p>
-                <div class="footer-content">
-                    <!-- Section des liens -->
-                    <div class="footer-links">
-                        <a href="mailto:anouchka.recard@gmail.com">anouchka.recard@gmail.com</a>
-                    </div>
-                    
-                    <!-- Section des icônes de réseaux sociaux -->
-                    <div class="social-icons">
+                    <div class="social-icons" style="font-size: 2em;">
                         <a href="https://www.instagram.com/anouchka.beal" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/votrepage" target="_blank" style="margin:5%;"><i class="fab fa-facebook-f">   </i> </a>
                         <a href="https://www.linkedin.com/in/anouchka-r%C3%A9card-532762224/?originalSubdomain=fr" target="_blank"><i class="fab fa-linkedin"></i></a>
                     </div>
+              
                 </div>
-            
-        </footer>
-    
-        <script src="script.js"></script>
+                
+            </div>
+        </section>
+    </main>
 
-        <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-        <script>
-        AOS.init(); // Initialisation de la bibliothèque AOS
-    </script>
-    </body>
-    </html>
+    <script src="script.js"></script>
+
+
+     <footer>
+        <p>&copy; 2024 Anouchka Récard. Tous droits réservés.</p>
+            <div class="footer-content">
+                <!-- Section des liens -->
+                <div class="footer-links">
+                    <a href="mailto:anouchka.recard@gmail.com">anouchka.recard@gmail.com</a>
+                </div>
+                
+                <!-- Section des icônes de réseaux sociaux -->
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/anouchka.beal" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/anouchka-r%C3%A9card-532762224/?originalSubdomain=fr" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        
+    </footer>
+</body>
+</html>

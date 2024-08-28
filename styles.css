@@ -251,13 +251,62 @@ body {
 }
 
 /* Style des éléments de la galerie */
+.gallery-item_2 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 25%;
+    margin-left:37%;
+    margin-bottom:3%;
+}
+
+
+.gallery-item_2 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.gallery-item_2 p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    transition: background 0.3s;
+}
+
+/* Effet au survol */
+.gallery-item_2:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item_2:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item_2:hover p {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/*gallery-item*/
 .gallery-item {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+ 
 }
+
 
 .gallery-item img {
     width: 100%;
@@ -292,11 +341,14 @@ body {
 .gallery-item:hover p {
     background: rgba(0, 0, 0, 0.8);
 }
-
 /* Réponse aux différents écrans */
 
 /* Tablette */
 @media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-item {
+        width: 100%;
+    }
+
     .gallery-section h2 {
         font-size: 1.5em;
     }
@@ -306,7 +358,14 @@ body {
 @media (max-width: 767px) {
     .gallery-section h2 {
         font-size: 1.2em;
+
+        
     }
+    .gallery-item_2 {
+            width: 70%;
+
+            margin-left: 15%;
+        }
 }
 
 
@@ -969,22 +1028,3 @@ footer .social-icons i:hover {
     }
 }
 
-
-/* Mobile */
-@media (max-width: 767px) {
-    .details_contact_1 {
-        padding: 0 10px;
-    }
-
-    .info_contact_1, .reseaux_sociaux_1 {
-        max-width: 100%;
-    }
-
-    .info_contact_1 h3, .reseaux_sociaux_1 h3 {
-        font-size: 1.3em;
-    }
-
-    .info_contact_1 p, .reseaux_sociaux_1 a {
-        font-size: 1em;
-    }
-}
