@@ -1,0 +1,990 @@
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+header {
+    background: #222;
+    color: #fff;
+    padding: 30px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background: #444;
+    border-radius: 5px;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    position: relative;
+}
+
+.bar {
+    background: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 4px 0;
+    transition: 0.3s;
+}
+/* Global Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('IMG_20220305_114114_392.jpg') no-repeat center center/cover;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    opacity: 0; /* Initial state for animation */
+    animation: fadeIn 2s forwards; /* Animation on page load */
+}
+
+.hero-content {
+    z-index: 2;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUp 1s 0.5s forwards; /* Animation for text */
+}
+
+.cta-button {
+    display: inline-block;
+    background: #f8a14c;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #e07b39;
+    transform: scale(1.1); /* Animation on hover */
+}
+
+/* Parallax Effect */
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: 1;
+    filter: brightness(50%);
+    transform: scale(1.2);
+    transition: transform 1s ease;
+}
+
+.hero-section:hover::before {
+    transform: scale(1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+
+/* Styles pour les sections "Grandes Toiles" et "Autres Toiles" */
+.large-canvas-section, .small-canvas-section {
+    font-size: 1em;
+    padding: 20px;
+    background-color: #f9f8f8; /* Couleur de fond claire pour chaque section */
+    margin-bottom: 60px;
+    opacity: 0; /* Commence invisible */
+    transform: translateY(20px); /* Décalage vers le bas */
+    animation: fadeInUp 1s forwards; /* Animation d'apparition */
+    position: relative; /* Pour les ombres internes */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre interne pour effet de creux */
+}
+
+/* Ajout d'une ombre interne pour le fond creux */
+.large-canvas-section::before, .small-canvas-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, #e0e0e0, #ffffff); /* Dégradé pour l'effet de lumière */
+    border-radius: 8px; /* Même rayon que la section */
+    z-index: -1; /* Mettre derrière le contenu */
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre interne plus prononcée */
+}
+
+/* Styles spécifiques aux titres de sections */
+.large-canvas-section h2, .small-canvas-section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #555;
+    text-align: center;
+    animation: fadeIn 1s ease-out; /* Animation d'apparition des titres */
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Réponse aux différents écrans */
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .large-canvas-section h2, .small-canvas-section h2 {
+        font-size: 1.8em;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .large-canvas-section h2, .small-canvas-section h2 {
+        font-size: 1.4em;
+    }
+}
+
+
+/* Style général de la galerie */
+.gallery-section {
+    padding: 20px;
+    text-align: center;
+    background-color: #f5f5f5; /* Couleur de fond claire */
+}
+
+.gallery-section h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Grid layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Style des éléments de la galerie */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.gallery-item p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    transition: background 0.3s;
+}
+
+/* Effet au survol */
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover p {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Réponse aux différents écrans */
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-section h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .gallery-section h2 {
+        font-size: 1.2em;
+    }
+}
+
+
+/* About Section */
+.about-section {
+    padding: 50px 20px;
+    background: #f4f4f4;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out;
+    margin-left:10%;
+}
+
+.about-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.about-text h2 {
+    margin-top: 0;
+}
+
+.about-text p {
+    line-height: 1.6;
+}
+
+/* Style pour l'image */
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.about-image img {
+    border-radius: 50%; /* Pour rendre l'image arrondie */
+    max-width: 60%;
+    height: auto;
+    transition: transform 0.6s ease, box-shadow 0.6s ease, filter 0.6s ease;
+    animation: zoomIn 1.5s ease-out; /* Animation de zoom au chargement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.about-image img:hover {
+    transform: rotate(10deg) scale(1.1); /* Effet de rotation et zoom au survol */
+    filter: blur(2px); /* Flou léger au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9); /* Zoom-out initial */
+        opacity: 0;
+    }
+    to {
+        transform: scale(1); /* Zoom-in final */
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image {
+        margin-top: 20px;
+    }
+
+    .about-image img {
+        max-width: 80%; /* Ajuster la taille de l'image sur mobile */
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+    .about-image img {
+        max-width: 70%; /* Ajuster la taille de l'image sur tablette */
+    }
+}
+
+
+/* Style général de la section Contact */
+.contacte-section {
+    padding: 40px;
+    background-color: #f0f0f0; /* Couleur de fond légère */
+    text-align: center;
+}
+
+.contacte-section h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* Style des éléments de contact */
+.contacte-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.contacte-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 400px;
+}
+
+.contacte-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333; /* Couleur du texte */
+}
+.contacte-icon {
+    font-size: 1.5em; /* Taille de l'icône */
+    margin-right: 10px; /* Espace entre l'icône et le texte */
+    transition: transform 0.3s;
+    color: #e74c3c; /* Couleur des liens au survol */
+
+}
+
+/* Effet au survol */
+.contacte-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contacte-item:hover .contact-icon {
+    transform: rotate(15deg);
+}
+
+/* Réponse aux différents écrans */
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .contacte-section h2 {
+        font-size: 1.8em;
+    }
+
+    .contacte-item {
+        max-width: 350px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .contacte-section h2 {
+        font-size: 1.5em;
+    }
+
+    .contacte-item {
+        max-width: 100%;
+        padding: 10px 20px;
+    }
+
+    .contacte-link {
+        font-size: 1em;
+    }
+
+    .contacte-icon {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+.contacte-icon {
+    font-size: 1.5em; /* Ajustez la taille ici */
+    transition: transform 0.3s;
+}
+
+
+/* Styles de base du footer */
+footer {
+    background-color: #333; /* Couleur de fond sombre */
+    color: #ffffff; /* Couleur du texte claire */
+    padding: 40px 0; /* Espacement intérieur */
+    text-align: center;
+}
+
+footer a {
+    color: #ffffff; /* Liens en blanc */
+    text-decoration: none; /* Supprime le soulignement */
+    margin: 0 10px; /* Espacement entre les liens */
+    transition: color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+footer a:hover {
+    color: #e74c3c; /* Couleur des liens au survol */
+}
+
+footer .social-icons {
+    margin-top: 20px;
+}
+
+footer .social-icons i {
+    font-size: 1.5em; /* Taille des icônes */
+    margin: 0 15px; /* Espacement entre les icônes */
+    transition: transform 0.3s; /* Animation de transition pour le survol */
+}
+
+footer .social-icons i:hover {
+    transform: scale(1.2); /* Agrandit les icônes au survol */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        text-align: center;
+    }
+
+    footer .social-icons i {
+        margin: 0 10px; /* Réduction de l'espace entre les icônes sur petits écrans */
+    }
+
+    footer a {
+        display: block;
+        margin: 10px 0; /* Liens empilés en mode mobile avec espacement vertical */
+    }
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Responsive Design */
+/* Styles spécifiques pour la version mobile */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+        position: absolute;
+        top: 60px; /* Ajuster en fonction de la hauteur de votre nav */
+        left: 0;
+        z-index: 1000;
+        text-align: center;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+        transition: background 0.3s ease;
+    }
+
+    .nav-links a:hover {
+        background-color: #444;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(45deg);
+        position: absolute;
+        top: 8px;
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 8px;
+    }
+
+    .nav-links.show {
+        display: flex; /* Affiche la liste déroulante lorsqu'elle est active */
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+}
+
+/* PAGE GALERIE */
+/* Styles pour la page Galerie */
+.art-gallery {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #ececec;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.art-gallery h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #222;
+    animation: slideInFromTop 1s ease-out;
+}
+
+/* Carrousel de Galerie */
+.art-carousel {
+    position: relative;
+    width: 30%; /* Taille du carrousel fixée à 30% */
+    margin: 0 auto; /* Centrer le carrousel horizontalement */
+    overflow: hidden;
+    display: inline-block; /* Assure que le carrousel ne prend que l'espace nécessaire */
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Effets au survol */
+.carousel-slide:hover img {
+    transform: scale(1.05);
+}
+
+.carousel-slide:hover .carousel-caption {
+    opacity: 1;
+}
+
+/* Contrôles du carrousel */
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 100;
+    font-size: 1.5em; /* Taille des flèches */
+    width: 40px; /* Largeur des boutons */
+    height: 40px; /* Hauteur des boutons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-prev {
+    left: 0;
+}
+
+.carousel-next {
+    right: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Réponse aux différents écrans */
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .art-gallery h1 {
+        font-size: 2em;
+    }
+
+    .art-carousel {
+        width: 50%; /* Ajustement pour les écrans de taille tablette */
+    }
+
+    .carousel-prev, .carousel-next {
+        font-size: 1.2em; /* Taille des flèches pour tablette */
+        width: 35px; /* Largeur des boutons pour tablette */
+        height: 35px; /* Hauteur des boutons pour tablette */
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .art-gallery h1 {
+        font-size: 1.5em;
+    }
+
+    .art-carousel {
+        width: 90%; /* Ajustement pour les écrans mobiles */
+    }
+
+    .carousel-prev, .carousel-next {
+        font-size: 1em; /* Taille des flèches pour mobile */
+        width: 30px; /* Largeur des boutons pour mobile */
+        height: 30px; /* Hauteur des boutons pour mobile */
+    }
+}
+
+/*A PROPOS HTML*/
+/* Styles généraux pour la section "À Propos" */
+.about-me-section {
+    padding: 20px;
+    background-color: #f5f5f5; /* Couleur de fond claire */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-me-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-me-text {
+    max-width: 600px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.about-me-photo {
+    max-width: 400px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.about-me-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Animations pour AOS */
+[data-aos="fade-right"] {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+[data-aos="fade-left"] {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Réponse aux différents écrans */
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .about-me-content {
+        flex-direction: column;
+    }
+
+    .about-me-text {
+        max-width: 90%;
+    }
+
+    .about-me-photo {
+        max-width: 300px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+    .about-me-content {
+        flex-direction: column;
+    }
+
+    .about-me-text {
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .about-me-photo {
+        max-width: 250px;
+    }
+}
+
+/*CONTACT*/
+/* Styles généraux pour la section Contact */
+.section_contact_1 {
+    padding: 40px 20px;
+    background-color: #f4f4f4; /* Couleur de fond claire */
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Styles pour le titre de la section Contact */
+.section_contact_1 h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: #333;
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Détails de contact */
+.details_contact_1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Informations de contact */
+.info_contact_1, .reseaux_sociaux_1 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.info_contact_1 h3, .reseaux_sociaux_1 h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.info_contact_1 p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.reseaux_sociaux_1 ul {
+    list-style: none;
+    padding: 0;
+}
+
+.reseaux_sociaux_1 li {
+    margin: 10px 0;
+}
+
+.reseaux_sociaux_1 a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.1em;
+}
+
+.reseaux_sociaux_1 a:hover {
+    text-decoration: underline;
+}
+
+/* Animations pour AOS */
+[data-aos="fade-up"] {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Réponse aux différents écrans */
+
+/* Tablette */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .details_contact_1 {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    .info_contact_1, .reseaux_sociaux_1 {
+        max-width: 90%;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 767px) {
+    .details_contact_1 {
+        padding: 0 10px;
+    }
+
+    .info_contact_1, .reseaux_sociaux_1 {
+        max-width: 100%;
+    }
+
+    .info_contact_1 h3, .reseaux_sociaux_1 h3 {
+        font-size: 1.3em;
+    }
+
+    .info_contact_1 p, .reseaux_sociaux_1 a {
+        font-size: 1em;
+    }
+}
