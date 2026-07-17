@@ -3,289 +3,640 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpg" href="logo.png">
+    <title>Mon Univers Artistique | Galerie & Peintures</title>
+    <style>
+        /* -----------------------------------------
+           1. RESET & VARIABLES (Le style général)
+        ----------------------------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
 
-    <title> Anouchka Récard | Artiste débutante </title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        :root {
+            --color-bg: #fcfbf9;       /* Un blanc chaud, type papier d'art */
+            --color-dark: #1a1a1a;     /* Un noir doux pour les textes et contrastes */
+            --color-accent: #8c7853;   /* Une touche dorée/terre pour le côté atelier */
+            --color-muted: #7f8c8d;    /* Pour les détails secondaires */
+        }
 
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-dark);
+            line-height: 1.6;
+        }
 
-    
+        /* -----------------------------------------
+           2. HEADER & HERO (L'entrée dans l'univers)
+        ----------------------------------------- */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
 
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
 
-    <meta property="og:title" content="Galerie - Anouchka Récard">
-    <meta property="og:description" content=" Anouchka Récard | Artiste débutante ">
-    <meta property="og:image" content=""> <!--image logo-->
-    <meta property="og:url" content="https://anouchkarecard.github.io/artsite/"> <!--url github du site-->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content=" Galerie - Anouchka Récard">
+        header p {
+            font-size: 1.1rem;
+            color: var(--color-muted);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
 
+        /* -----------------------------------------
+           3. FILTRES DE LA GALERIE
+        ----------------------------------------- */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
 
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--color-dark);
+            padding: 8px 18px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--color-dark);
+            color: var(--color-bg);
+        }
+
+        /* -----------------------------------------
+           4. LA GRILLE DE TOILES (Ultra Responsive)
+        ----------------------------------------- */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            /* 1 colonne sur mobile, 2 sur tablette, 3 sur ordi */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .artwork-card {
+            background: #ffffff;
+            border-bottom: 2px solid transparent;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Ratio 1:1 (Carré) pour l'harmonie visuelle. Modifiable en 125% pour du vertical */
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Recadre proprement l'image dans le carré */
+            transition: transform 0.5s ease;
+        }
+
+        .artwork-card:hover .image-wrapper img {
+            transform: scale(1.03);
+        }
+
+        /* Badges de statut */
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .badge.available {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--color-dark);
+        }
+
+        .badge.sold {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
+        }
+
+        /* Infos de la toile */
+        .artwork-info {
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        .artwork-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .artwork-details {
+            font-size: 0.85rem;
+            color: var(--color-muted);
+            margin-bottom: 10px;
+        }
+
+        .artwork-price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--color-accent);
+        }
+
+        /* -----------------------------------------
+           5. SECTION CONTACT & EXPO
+        ----------------------------------------- */
+        .contact-section {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .contact-section h2 {
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #bdc3c7;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: var(--color-bg);
+            color: var(--color-dark);
+            padding: 12px 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-contact:hover {
+            background-color: var(--color-accent);
+            color: white;
+        }
+
+        /* -----------------------------------------
+           6. ADAPTATIONS ÉCRANS (Responsive)
+        ----------------------------------------- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .gallery-grid { gap: 20px; }
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Barre de Menu -->
+
+    <!-- Entête & Univers -->
     <header>
-        <nav>
-            <div class="logo"> Anouchka Récard </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="galerie.html">Galerie</a></li>
-                <li><a href="apropos.html">À Propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-
-            
-        </nav>
-
+<h1>AR</h1>
+<div style="letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; color: #8c7853; margin-top: -5px; margin-bottom: 25px;">
+    Artiste Peintre
+</div>        <p>Exploration visuelle depuis 2021. De l'énergie de l'acrylique à la profondeur de la peinture à l'huile. Bienvenue dans mon univers aux multiples facettes.</p>
         
-
-        
+        <!-- Filtres pour trier tes créations -->
+        <!-- Filtres mis à jour pour intégrer les nouveautés -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterGallery('all')">Tout voir</button>
+            <button class="filter-btn" onclick="filterGallery('recent')">Toiles Récentes ✨</button>
+            <button class="filter-btn" onclick="filterGallery('huile')">Huile</button>
+            <button class="filter-btn" onclick="filterGallery('acrylique')">Acrylique</button>
+            <button class="filter-btn" onclick="filterGallery('vendu')">Collection Privée</button>
+        </div>
     </header>
 
-    <!-- Corps de Page -->
-    <main>
+    <!-- Galerie -->
+    <main class="gallery-container">
+        <div class="gallery-grid" id="gallery">
 
-        
-        <!-- Section Accueil -->
-        <section id="home" class="hero-section">
-            <div class="hero-content">
-                <h1> Welcome </h1>
-                <a href="galerie.html" class="cta-button">Découvrir la Galerie</a>
-            </div>
-        </section>
+            <!-- TOILE RÉCENTE — NON DISPONIBLE (EXPO SEULE) -->
+<div class="artwork-card" data-category="huile recent">
+    <div class="image-wrapper">
+        <img src="lv_0_20260715104329.jpg" alt="Nom de la toile">
+        <span class="badge sold" style="background-color: rgba(140, 120, 83, 0.8);">Œuvre d'Exposition</span>
+    </div>
+    <div class="artwork-info">
+        <h3 class="artwork-title">Les traces de bébé A.</h3>
+        <p class="artwork-details">Huile sur toile — 60x80cm — 2026</p>
+        <p class="artwork-price" style="color: var(--color-accent); font-style: italic; font-weight: normal;">Collection de l'artiste</p>
+    </div>
+</div>
 
-        <!-- Section Galerie -->
-        <section class="art-gallery" id="carousel-1">
-            <h1>Mes Œuvres</h1>
-            <h2> Les plus grandes ... </h2>
-            
-            <div class="art-carousel">
-                <div class="carousel-wrapper">
-                    <div class="carousel-slide">
-                        <img src="dame1.jpg" alt="Œuvre 1">
-                        
-                        <div class="carousel-caption">Dame au coeur</div>
-                        
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="Emergence - Copie.jpg" alt="Œuvre 1">
-                        
-                        <div class="carousel-caption">Dame au coeur</div>
-                        
-                    </div>
-                    <!-- Ajoutez d'autres diapositives ici -->
+            <!-- TOILE RÉCENTE — À VENDRE 
+<div class="artwork-card" data-category="huile recent">
+    <div class="image-wrapper">
+        <img src="Lien_Photo_Toile_A_Vendre.jpg" alt="Nom de la toile">
+        <span class="badge available">Nouveauté • À Vendre</span>
+    </div>
+    <div class="artwork-info">
+        <h3 class="artwork-title">Nom de ta Toile</h3>
+        <p class="artwork-details">Huile sur toile — 50x50cm — 2026</p>
+        <p class="artwork-price">280 €</p>
+    </div>
+</div> -->
+
+<!-- TOILE RÉCENTE — DÉJÀ VENDUE -->
+<div class="artwork-card" data-category="huile recent vendu">
+    <div class="image-wrapper">
+        <img src="20260503_0910271.jpg" alt="Nom de la toile">
+        <span class="badge sold">Nouveauté • Collection Privée</span>
+    </div>
+    <div class="artwork-info">
+        <h3 class="artwork-title"> Les vignes de Bourgogne </h3>
+        <p class="artwork-details">Huile sur toile — 40x40cm — 2026</p>
+        <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+    </div>
+</div>
+
+<div class="artwork-card" data-category="huile recent vendu">
+    <div class="image-wrapper">
+        <img src="20251222_133737.jpg" alt="Nom de la toile">
+        <span class="badge sold">Nouveauté • Collection Privée</span>
+    </div>
+    <div class="artwork-info">
+        <h3 class="artwork-title"> Lycée Honoré d'urfé personnalisé - Commande d'élèves </h3>
+        <p class="artwork-details">Huile sur toile — 40x40cm — 2026</p>
+        <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+    </div>
+</div>
+
+
+
+            <!-- TOILE 1 : Exemple Huile à Vendre -->
+           <div class="artwork-card" data-category="huile">
+            <div class="image-wrapper">
+                    <img src="Emergence - Copie.jpg" alt="Nom de la toile vendue">
+                    <span class="badge available"> A vendre</span>
                 </div>
-                <button class="carousel-prev" data-carousel-id="1">❮</button>
-                <button class="carousel-next" data-carousel-id="1">❯</button>
-            </div>
-        </section>
-        
-        <section class="art-gallery" id="carousel-2">
-            <h2> Et les tailles classiques... </h2>
-            
-            <div class="art-carousel">
-                <div class="carousel-wrapper">
-                    <div class="carousel-slide">
-                        <img src="serenité.jpg" alt="Œuvre 1">
-                        <div class="carousel-caption">Sérénité</div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="canard1.jpg" alt="Œuvre 1">
-                        <div class="carousel-caption">Canard Colvert</div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="fleurmere.jpg" alt="Œuvre 2">
-                        <div class="carousel-caption">Fleur</div>
-                    </div>
-
-                    
-                    <div class="carousel-slide">
-                        <img src="imperfections.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">imperfections</div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="grandir.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">C'est l'histoire d'un enfant qui grandi </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="montagne.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">Montagnes</div>
-                    </div>
-                    
-                    <div class="carousel-slide">
-                        <img src="jardin.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">Jardin</div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="Lune2.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">Lune</div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="ponton.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption"> Test </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="racine.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">Racines (pas fini) </div>
-                    </div>
-
-                    
-                    <div class="carousel-slide">
-                        <img src="5.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption"> Sapins </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="4.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption"> Bleu </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="2.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption"> Oiseaux </div>
-                    </div>
-
-                    <div class="carousel-slide">
-                        <img src="IMG_20220305_114114_392.jpg" alt="Œuvre 3">
-                        <div class="carousel-caption">Chouette</div>
-                    </div>
-
-                </div>
-                <button class="carousel-prev" data-carousel-id="2">❮</button>
-                <button class="carousel-next" data-carousel-id="2">❯</button>
-            </div>
-        </section>
-        
-        <!-- Section À Propos -->
-        <section id="a-propos" class="about-section">
-            <div class="about-content">
-                <div class="about-text">
-                    <h2>À Propos</h2>
-                    <p>Jeune artiste en herbe et enseignante, ma passion pour la peinture est née au croisement de mes études supérieures à Lyon.
-
-                    </p>
-                </div>
-                <div class="about-image">
-                    <img src="Anouchka1.jpg" alt="Photo de l'artiste">
-                </div>
-            </div>
-        </section>
-        
-
-        <!-- Section Contact -->
-        <section id="contact" class="contacte-section">
-            <h2>Contactez-moi</h2>
-            <div class="contacte-info">
-                <div class="contacte-item" data-aos="fade-right">
-                    <a href="mailto:anouchka.recard@gmail.com" class="contacte-link">
-                        <i class="fas fa-envelope contacte-icon"></i> <!-- Icône Email -->
-                        anouchka.recard@gmail.com
-                    </a>
-                </div>
-                <div class="contacte-item" data-aos="fade-right" data-aos-delay="200">
-                    <a href="https://www.instagram.com/anouchka.beal" target="_blank" class="contacte-link">
-                        <i class="fab fa-instagram contacte-icon"></i> <!-- Icône Instagram -->
-                        @anouchka.beal
-                    </a>
-                </div>
-                <div class="contacte-item" data-aos="fade-right" data-aos-delay="400">
-                    <a href="https://www.linkedin.com/in/anouchka-r%C3%A9card-532762224/?originalSubdomain=fr" target="_blank" class="contacte-link">
-                        <i class="fab fa-linkedin contacte-icon"></i> <!-- Icône LinkedIn -->
-                        Anouchka Récard
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-        
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Anouchka Récard. Tous droits réservés.</p>
-            <div class="footer-content">
-                <!-- Section des liens -->
-                <div class="footer-links">
-                    <a href="mailto:anouchka.recard@gmail.com">anouchka.recard@gmail.com</a>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> Emergence </h3>
+                    <p class="artwork-details"> Huile sur toile — 120x40cm — 2025</p>
+                    <p class="artwork-price"> 40 euros </p>
                 </div>
                 
-                <!-- Section des icônes de réseaux sociaux -->
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/anouchka.beal" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/anouchka-r%C3%A9card-532762224/?originalSubdomain=fr" target="_blank"><i class="fab fa-linkedin"></i></a>
-                </div>
-                <p style="color:#6bdcf0"> - Saint-Etienne - </p>
-
             </div>
-        
-    </footer>
+
+            <!-- TOILE 2 : Exemple Acrylique à Vendre -->
+           <div class="artwork-card" data-category="acrylique">
+            <div class="image-wrapper">
+                    <img src="dame1.jpg" alt="Dame au coeur">
+                    <span class="badge available">A vendre</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Dame au coeur qui saigne </h3>
+                    <p class="artwork-details">Huile sur toile — 120x40cm — 2023</p>
+                    <p class="artwork-price"> 50 euros </p>
+                </div>
+                
+            </div>
+
+            <div class="artwork-card" data-category="acrylique">
+                <div class="image-wrapper">
+                    <img src="IMG_20220305_114114_392.jpg" alt="Chouette">
+                    <span class="badge available">A vendre</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> Chouette </h3>
+                    <p class="artwork-details">Acrylique sur toile — 30x40cm — 2021</p>
+                    <p class="artwork-price"> 20 euros </p>
+                </div>
+            </div>
+
+             <div class="artwork-card" data-category="acrylique">
+                <div class="image-wrapper">
+                    <img src="imperfections.jpg" alt="Imperfections">
+                    <span class="badge available">A vendre</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">L Imperfections</h3>
+                    <p class="artwork-details">Acrylique sur toile — 30X40cm — 2023</p>
+                    <p class="artwork-price"> 20 euros </p>
+                </div>
+            </div>
+
+            <div class="artwork-card" data-category="acrylique">
+                <div class="image-wrapper">
+                    <img src="jardin.jpg" alt="Jardin de fleur - essai au couteau">
+                    <span class="badge available "> A vendre </span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Jardin de fleurs - essai au couteau </h3>
+                    <p class="artwork-details"> Acrylique sur toile — 20x15cm — 2023</p>
+                    <p class="artwork-price"> 10 euros </p>
+                </div> 
+            </div>
+
+            <div class="artwork-card" data-category="acrylique">
+                <div class="image-wrapper">
+                    <img src="racine.jpg" alt="Racine">
+                    <span class="badge available "> A vendre </span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Racine </h3>
+                    <p class="artwork-details"> Acrylique sur toile — 20x15cm — 2023</p>
+                    <p class="artwork-price"> 20 euros </p>
+                </div> 
+            </div>
 
 
-    <script src="script.js"></script>
+            <!-- TOILE 3 : Exemple Œuvre Déjà Vendue -->
 
-    <script>document.addEventListener('DOMContentLoaded', () => {
-        // Fonction pour configurer un carrousel spécifique
-        function setupCarousel(carouselId) {
-            const carouselSection = document.getElementById(`carousel-${carouselId}`);
-            const prevButton = carouselSection.querySelector('.carousel-prev');
-            const nextButton = carouselSection.querySelector('.carousel-next');
-            const carouselWrapper = carouselSection.querySelector('.carousel-wrapper');
-            const slides = carouselSection.querySelectorAll('.carousel-slide');
-            let index = 0;
-    
-            function updateCarousel() {
-                const slideWidth = slides[0].offsetWidth; // Largeur des diapositives
-                carouselWrapper.style.transform = `translateX(-${index * slideWidth}px)`;
-            }
-    
-            function showSlide(n) {
-                if (n >= slides.length) {
-                    index = 0;
-                } else if (n < 0) {
-                    index = slides.length - 1;
-                } else {
-                    index = n;
-                }
-                updateCarousel();
-            }
-    
-            prevButton.addEventListener('click', () => {
-                showSlide(index - 1);
-            });
-    
-            nextButton.addEventListener('click', () => {
-                showSlide(index + 1);
-            });
-    
-            // Initialiser le carrousel
-            updateCarousel();
-    
-            // Optionnel : Ajouter la fonctionnalité de défilement automatique
-            setInterval(() => {
-                showSlide(index + 1);
-            }, 5000); // Change la diapositive toutes les 5 secondes
+             <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="Screenshot_20260717_185923_Instagram.jpg" alt="La danseuse">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">La danseur </h3>
+                    <p class="artwork-details">Acrylique sur toile — 60x50cm — 2025</p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+
+            
+            </div>
+
+             <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="montagne.jpg" alt="Montagnes des Alpes.">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title">Montagnes des Alpes</h3>
+                    <p class="artwork-details">Acrylique sur toile — 40x40cm — 2024</p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+
+            
+            </div>
+          
+
+            <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="grandir.jpg" alt="C'est l'histoire d'un enfant qui grandi">
+                    <span class="badge sold "> Collection Privée </span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> C'est l'histoire d'un enfant qui grandi </h3>
+                    <p class="artwork-details">Acrylique sur toile — 30X40cm — 2023</p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+
+            
+            </div>
+
+
+             
+
+            <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="canard1.jpg" alt="Canard Colvert ">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> Canard Colvert </h3>
+                    <p class="artwork-details"> Acrylique sur toile — 40x50cm — 2023 </p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+            </div>
+
+           
+
+            <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="ponton.jpg" alt="Essai">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> Essai au couteau </h3>
+                    <p class="artwork-details"> acrylique sur toile — 50x40cm — 2023 </p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+            </div>
+
+            
+
+
+            <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="5.jpg" alt="Sapins d'hiver ">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> Sapins d'hiver</h3>
+                    <p class="artwork-details"> Acrylique sur toile — 30x40cm — 2023 </p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+            </div>
+
+             <div class="artwork-card" data-category="vendu huile">
+                <div class="image-wrapper">
+                    <img src="4.jpg" alt="hiver bleu">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> Hiver bleu</h3>
+                    <p class="artwork-details"> Huile sur toile — 30x30cm — 2023 </p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+            </div>
+
+            <div class="artwork-card" data-category="vendu acrylique">
+                <div class="image-wrapper">
+                    <img src="fleurmere.jpg" alt="fleur solitaire">
+                    <span class="badge sold">Collection Privée</span>
+                </div>
+                <div class="artwork-info">
+                    <h3 class="artwork-title"> FLeur solitaire</h3>
+                    <p class="artwork-details"> Acrylique sur toile — 30x30cm — 2023 </p>
+                    <p class="artwork-price" style="color: var(--color-muted); text-decoration: line-through; font-weight: normal;">Vendu</p>
+                </div>
+            </div>
+
+            <!-- Tu peux dupliquer les blocs ci-dessus pour ajouter autant de toiles que tu veux ! -->
+
+        </div>
+    </main>
+ <!-- NOUVELLE SECTION : À PROPOS / BIOGRAPHIE -->
+
+ <style>
+    /* -----------------------------------------
+           5.5 SECTION À PROPOS
+        ----------------------------------------- */
+        .about-section {
+            background-color: #f3f0ea; /* Un fond légèrement plus chaud pour détacher la section */
+            padding: 80px 20px;
         }
-    
-        // Initialiser chaque carrousel avec un identifiant unique
-        setupCarousel('1');
-        setupCarousel('2');
-    });
-    </script>
 
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            filter: grayscale(20%); /* Un petit effet artistique sur la photo */
+        }
+
+        .about-text {
+            flex: 1.5;
+        }
+
+        .about-text h2 {
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--color-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #4a4a4a;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* Ajustement responsive pour tablette/mobile */
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column; /* On empile la photo et le texte sur mobile */
+                gap: 30px;
+            }
+            .about-text p {
+                text-align: left;
+            }
+        }
+ </style>
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-image">
+                <!-- Remplace par une photo de toi, de tes pinceaux ou de ton atelier -->
+                <img src="Screenshot_20260717_190315_Instagram.jpg" alt="Dans l'atelier">
+            </div>
+            <div class="about-text">
+                <h2>Derrière la Toile</h2>
+<p>
+    Enseignante au quotidien, mon aventure avec les pinceaux a débuté au carrefour de mes études en 2021. 
+    Une passion qui a rapidement rencontré son public : en 2023, ma toute première exposition à La Côte-Saint-André 
+    en Isère a marqué un tournant, le moment où mes toiles ont commencé à quitter ma chambre étudiante pour rejoindre 
+    vos intérieurs. 
+</p>
+<p>
+    Depuis, ma vie s'équilibre entre deux rythmes : la course à pied pour me défouler, et la peinture pour me recentrer. 
+    Récemment, la maternité est venue bousculer mon quotidien. Si le temps pour peindre est devenu plus rare, 
+    l’envie, elle, s'est décuplée. C’est au début de l'année 2024 que j’ai découvert la peinture à l'huile, 
+    et ce fut un coup de foudre artistique. Désormais, je travaille exclusivement avec cette technique. 
+    L'huile m’impose son propre rythme, me permettant de travailler la matière en profondeur et de suspendre le temps, 
+    session après session.
+</p>
+<p>
+    Mes sujets restent très variés, guidés par la liberté de peindre ce que les mots ne suffisent pas à exprimer. 
+    Chaque tableau est un morceau de cette histoire en mouvement — qu'il s'agisse d'une œuvre disponible 
+    ou d'une toile ayant déjà trouvé sa place dans une collection privée.
+</p>
+                
+                </div>
+        </div>
+    </section> 
+
+
+    <!-- Zone d'action / Contact -->
+    <section class="contact-section">
+        <h2>Une œuvre vous touche ?</h2>
+        <p>Pour toute demande d'acquisition, de projet sur-mesure ou de proposition d'exposition, n'hésitez pas à me contacter directement.</p>
+        <a href="mailto:anouchka.bourdier@netc.fr" class="btn-contact">Me contacter par email</a>
+    </section>
+
+    <!-- Petit script pour faire fonctionner les boutons de filtres instantanément -->
     <script>
-        AOS.init({
-            duration: 1200, // Durée des animations en millisecondes
+    function filterGallery(category) {
+        // 1. Mettre à jour le bouton actif (le style visuel)
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        // Sécurité pour éviter l'erreur si l'événement n'est pas passé directement
+        if (event && event.target) {
+            event.target.classList.add('active');
+        }
+
+        // 2. Filtrer les cartes de toiles
+        const cards = document.querySelectorAll('.artwork-card');
+        
+        cards.forEach(card => {
+            // On récupère le texte du data-category (ex: "huile recent vendu")
+            const cardCategories = card.getAttribute('data-category');
+            
+            // Si on clique sur "Tout voir", on affiche tout
+            if (category === 'all') {
+                card.style.display = 'flex';
+            } else {
+                // On sépare les mots s'il y en a plusieurs, et on vérifie si la catégorie choisie est dedans
+                const categoriesArray = cardCategories.split(' ');
+                
+                if (categoriesArray.includes(category)) {
+                    card.style.display = 'flex'; // On affiche la toile
+                } else {
+                    card.style.display = 'none';  // On cache la toile
+                }
+            }
         });
-    </script>
+    }
+</script>
+
+   
+
 </body>
 </html>
